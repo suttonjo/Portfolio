@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Resume - Start Bootstrap Theme</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+    rel="stylesheet">
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/resume.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      <span class="d-block d-lg-none">Start Bootstrap</span>
+      <span class="d-none d-lg-block">
+        <img style="width: 300px; height: 300px; object-fit: cover;"
+          class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.jpg" alt="">
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="VikingShip.html">Viking Ship Assessment</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="CollegeExplorer.html">College Explorer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="SuperResolution.html">Super Resolution</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+      <div class="my-auto">
+        <h1 class="mb-0">Pokemon Type
+          <span class="text-primary">Calculator</span>
+        </h1>
+        <img class="image" src="img/LESRCNN.png" alt="">
+      </div>
+    </section>
+
+    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="projects">
+      <div class="my-auto">
+        <h2 class="mb-5">Project Description</h2>
+        <p class="paragraph">Super-Resolution is the process of taking an input image and upscaling it to a higher
+          resolution, ideally with minimal loss to detail and image quality. Convolution Neural
+          Networks(CNNs) have proven to be effective structures in solving Super-Resolution problems.
+          Over the course of the project, we implemented three different Single-Image Super Resolution
+          networks, a simple 3 layer Super-Resolution Convolutional Neural Network (SRCNN) as
+          proposed Chao Dong, the faster and stronger Fast Super-Resolution Convolutional Neural Network
+          (FSRCNN), adapted by the same team, and an even stronger and more complex Lightweight Enhanced
+          SRCNN (LESRCNN), as proposed by Chunwei Tian.
+        </p>
+        <img class="image" src="img/SRCNN.png" alt="SRCNN">
+        <p class="paragraph">The SRCNN consists of 3 convolutional layers, with RELU activation functions after
+          each one, and a regression layer at the end, each with randomized weights. The first
+          convolutional layer is designed to extract patches from the input, representing each as a
+          high-dimensional vector. The second non-linearly maps each vector onto another. The third layer
+          aggregates the representations together, constructing a high-resolution output image. To train the
+          network we randomly extracted [32/64/96/128] 33x33 patches from our training dataset as input
+          to the network.
+        </p>
+        <img class="image" src="img/FSRCNN.png" alt="">
+        <p class="paragraph">The FSRCNN network consists of an initial patch extraction layer, followed by a feature
+          dimension
+          shrinking layer to reduce computation complexity. We next have 2-4 non-linear mapping layers
+          with medium sized(3x3) filters, designed to improve the network. After that, we have an
+          expanding layer, acting as the inverse of the shrinking layer, followed by a transposed
+          convolutional layer which upsamples the data into a HR image. Each layer except for the
+          transpose is followed by a PRELU activation function [2]. To train the network, we randomly
+          extracted 7x7 patches from each image in our training dataset as input into the network. After
+          some experimentation, we found that having only 2 mapping layers works best, and decreases
+          training time substantially.</p>
+        <img class="image" src="img/LESRCNNDiagram.png" alt="">
+        <p class="paragraph">The LESRCNN network consists of three blocks, an “information extraction and
+          enhancement block (IEEB), a reconstruction block (RB), and an information refinement block
+          (IRB)” [3]. The IEEB block extracts and aggregates lower resolution features and uses a residual
+          training method, applying element-wise addition with each odd convolution to keep accurate
+          hierarchical information. Then, the RB block performs residual learning on the output of the
+          IEEB first and last ReLU layer. For our scaling factor r, the RB convolves sum of the two layers,
+          expanding the number of channels to be r^2 times larger, creating a (H x W x C*r^2) tensor
+          shaping. Then, this tensor is passed through the shuffle layer outputting an upsampled (rH x rW
+          x C) tensor which blends information from the channels [4]. Finally, the IRB processes the
+          inputted course high frequencies to increase accuracy of the high resolution image with 4
+          convolution and ReLU layers [3].
+        </p>
+        <p>Through this project there was many road blocks whe trying to understand each network before
+          implementing them. The biggest of them being the sub-pixel convolution layer. Depending on how
+          much we wanted to increase the resultion, either by 2x or 3x the creation of the sub-pixel layer
+          would be different. Luckily we found a 2x layer. With this example it was easy to create a
+          sub-pixel layer turning 9 seperate layers into 1 image.</p>
+      </div>
+      <a href="https://synkronizing.github.io/Pokemon_Quick_Type_Chart/"><button class="button-77">Use App</button></a>
+    </section>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/resume.min.js"></script>
+
+</body>
+
+</html>
